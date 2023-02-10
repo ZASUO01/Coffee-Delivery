@@ -1,15 +1,12 @@
-import { HomeContainer, IntroContaner } from './style'
+import { Intro } from './Intro'
+import { CoffeeList } from './CoffeeList'
+import { HomeContainer } from './style'
 
 export function Home() {
   return (
     <HomeContainer>
-      <IntroContaner>
-        <div>
-          <div></div>
-          <div></div>
-        </div>
-        <div></div>
-      </IntroContaner>
+      <Intro />
+      <CoffeeList />
     </HomeContainer>
   )
 }
