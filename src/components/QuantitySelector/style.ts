@@ -1,13 +1,22 @@
 import styled from 'styled-components'
 
-export const BuyQty = styled.div`
+const SELECTOR_HEIGHTS = {
+  sm: '2rem',
+  lg: '2.375rem'
+} as const
+
+interface BuyQtyProps {
+  selectorHeight: keyof typeof SELECTOR_HEIGHTS
+}
+
+export const BuyQty = styled.div<BuyQtyProps>`
   display: flex;
   align-items: center;
   width: 4.5rem;
 
   input {
     width: 1.5rem;
-    height: 2.375rem;
+    height: ${(props) => SELECTOR_HEIGHTS[props.selectorHeight]};
     border: 0;
     background: ${(props) => props.theme['base-button']};
     line-height: 130%;
@@ -21,7 +30,7 @@ export const BuyQty = styled.div`
   button {
     cursor: pointer;
     width: 1.5rem;
-    height: 2.375rem;
+    height: ${(props) => SELECTOR_HEIGHTS[props.selectorHeight]};
     border: 0;
     background-color: red;
     background: ${(props) => props.theme['base-button']};

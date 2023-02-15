@@ -2,12 +2,15 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   width: 100%;
-  max-width: 70rem;
+  position: fixed;
+  z-index: 10;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 2rem calc((100vw - 70rem) / 2);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
+  background-color: rgba(250, 250, 250, 0.8);
 
   img {
     height: 2.5rem;

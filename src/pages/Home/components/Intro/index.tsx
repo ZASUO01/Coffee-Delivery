@@ -1,6 +1,6 @@
 import { IntroContaner, Items, Title, Item } from './style'
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
-import intro from '../../../assets/intro.svg'
+import intro from '../../../../assets/intro.svg'
 
 export function Intro() {
   return (

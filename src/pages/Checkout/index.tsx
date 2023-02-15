@@ -1,28 +1,39 @@
-import americano from '../../assets/americano.png'
+import { useContext, useState } from 'react'
+import { useForm, FormProvider } from 'react-hook-form'
+import { ProductsContext } from '../../contexts/ProductsContext'
 import {
-  Bank,
-  CreditCard,
   CurrencyDollar,
   MapPinLine,
-  Money,
-  Minus,
-  Plus,
 } from 'phosphor-react'
 import {
   FormCard,
   CheckoutContainer,
   FormBlock,
   FormCardHead,
-  Address,
-  InputContainer,
-  PaymentOptions,
-  BuyQty,
 } from './style'
+import { Address } from './components/Address'
+import { PaymentOptions } from './components/PaymentOptions'
+import { CartResume } from './components/CartResume'
+
 
 export function Checkout() {
+  const { cartState } = useContext(ProductsContext)
+  const [paymentOption, setPaymentOption] = useState('')
+  
+  const buyerDetailsForm = useForm({
+
+  })
+
+  const { handleSubmit, reset } = buyerDetailsForm
+  const isSubmitDisabled = cartState.length > 0 ? false : true
+
+  function handleBuyProducts(){
+    reset()
+  }
+
   return (
     <CheckoutContainer>
-      <form>
+      <form action="" onSubmit={handleSubmit(handleBuyProducts)}>
         <FormBlock>
           <h1>Complete seu pedido</h1>
           <FormCard>
@@ -33,27 +44,9 @@ export function Checkout() {
                 <p>Informe o endereço onde deseja receber seu pedido</p>
               </div>
             </FormCardHead>
-            <Address>
-              <InputContainer>
-                <input type="text" name="cep" placeholder="CEP" />
-              </InputContainer>
-              <InputContainer>
-                <input type="text" name="street" placeholder="Rua" />
-              </InputContainer>
-              <InputContainer>
-                <input type="text" name="number" placeholder="Número" />
-                <input
-                  type="text"
-                  name="complement"
-                  placeholder="Complemento"
-                />
-              </InputContainer>
-              <InputContainer>
-                <input type="text" name="neighborhood" placeholder="Bairro" />
-                <input type="text" name="city" placeholder="Cidade" />
-                <input type="text" name="uf" placeholder="UF" />
-              </InputContainer>
-            </Address>
+            <FormProvider {...buyerDetailsForm}>
+              <Address />
+            </FormProvider>
           </FormCard>
           <FormCard>
             <FormCardHead iconColor="purple">
@@ -66,42 +59,16 @@ export function Checkout() {
                 </p>
               </div>
             </FormCardHead>
-            <PaymentOptions>
-              <button type="button">
-                <CreditCard size={16} />
-                CARTÃO DE CRÉDITO
-              </button>
-              <button type="button">
-                <Bank size={16} />
-                CARTÃO DE DEBITO
-              </button>
-              <button type="button">
-                <Money size={16} />
-                DINHEIRO
-              </button>
-            </PaymentOptions>
+            <PaymentOptions paymentOption={paymentOption} setPaymentOption={setPaymentOption}/>
           </FormCard>
         </FormBlock>
         <FormBlock>
           <h1>Cafés Selecionados</h1>
           <FormCard>
-            <div>
-              <img src={americano} />
-              <div>
-                <p>Expresso Tradicional</p>
-                <div>
-                  <BuyQty>
-                    <button>
-                      <Minus size={14} weight="bold" />
-                    </button>
-                    <input type="number" min={1} value={1} />
-                    <button>
-                      <Plus size={14} weight="bold" />
-                    </button>
-                  </BuyQty>
-                </div>
-              </div>
-            </div>
+              <CartResume cartState={cartState}/>
+              <button type='submit' disabled={isSubmitDisabled}>
+                CONFIRMAR PEDIDO
+              </button>
           </FormCard>
         </FormBlock>
       </form>
