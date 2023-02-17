@@ -6,9 +6,9 @@ import { useContext } from 'react'
 import { ProductsContext } from '../../contexts/ProductsContext'
 
 export function Header() {
-  const { cartState } = useContext(ProductsContext)
+  const { cart } = useContext(ProductsContext)
 
-  const cartQty = cartState.length
+  const cartQty = cart.length
 
   return (
     <HeaderContainer>

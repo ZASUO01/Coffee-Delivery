@@ -62,23 +62,6 @@ export const FormCard = styled.div`
   & + & {
     margin-top: 0.75rem;
   }
-
-  .empty-cart{
-
-    margin-bottom: 1rem;
-    color: ${(props) => props.theme['base-text']};
-  }
-
-  .card-divisor{
-    width: 100%;
-    padding: 1.5rem 0;
-
-    hr{
-      border: none;
-      height: 1px;
-      background: ${(props) => props.theme['base-button']};
-    }
-  }
 `
 
 const HEAD_COLORS = {

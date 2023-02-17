@@ -4,6 +4,15 @@ export const AddressContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  .form-error{
+    font-size: 0.75rem;
+    color: red;
+  }
+
+  .form-error-input{
+    font-size: 0.75rem;
+  }
 `
 
 export const InputContainer = styled.div`

@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer, useState } from 'react'
-import { addProductToCartAction, removeCartProductAction, updateCartProductAction } from '../reducers/cart/actions'
-import { cartReducer } from '../reducers/cart/reducer'
+import { addProductToCartAction, createOrderAction, removeCartProductAction, updateCartProductAction } from '../reducers/cart/actions'
+import { deliverReducer } from '../reducers/cart/reducer'
 import {v4 as uuidv4} from 'uuid'
 
 enum ProductTags {
@@ -25,34 +25,54 @@ export interface CartProduct {
   product: Product
 }
 
+export interface Order {
+  address: {
+    cep: string,
+    street: string,
+    number: string,
+    complement?: string,
+    neighborhood: string,
+    city: string,
+    uf: string
+  }
+  paymentOption: string,
+}
+
+export interface DeliverState {
+  cart: CartProduct[]
+  order: Order | null
+}
 
 interface ProductsContextType{
     products: Product[]
-    cartState: CartProduct[]
+    cart: CartProduct[]
+    order: Order | null
     addProductToCart: (data: CartProduct) => void
     isProductInCart: (id: string) => boolean
-    updateCartProduct: (id: string, quantity: number) => void,
+    updateCartProduct: (id: string, quantity: number) => void
     removeCartProduct: (id: string) => void
+    createOrder: (data: Order) => void
 }
-
-
 
 export const ProductsContext = createContext({} as ProductsContextType)
 
 interface ProductsContextProvidersProps {
-  children: ReactNode
+  children: ReactNode,
+  
 }
 
 export function ProductsContextProvider({
   children,
 }: ProductsContextProvidersProps) {
-  const[cartState, dispatch] = useReducer(
-    cartReducer,
-    [])  
+    const  [deliverState, dispatch] = useReducer(
+      deliverReducer,
+      {
+        cart: [],
+        order: null
+      }
+    )
   
-  const [order, setOrder] = useState(null)
-
-  const [products, setProducts] = useState<Product[]>([])
+    const [products, setProducts] = useState<Product[]>([])
 
     useEffect(() => {
       fetch('./src/contexts/products.json')
@@ -73,8 +93,9 @@ export function ProductsContextProvider({
       dispatch(addProductToCartAction(data.product, data.quantity))
     }
 
+   
     function isProductInCart(id: string){
-      const foundProduct = cartState.find((item) => {
+      const foundProduct = deliverState.cart.find((item) => {
         return item.product.id === id
       })
 
@@ -92,24 +113,24 @@ export function ProductsContextProvider({
     function removeCartProduct(id: string){
       dispatch(removeCartProductAction(id))
     }
-
-    function generateOrder(){
-
+     
+    function createOrder(data: Order){
+      dispatch(createOrderAction(data))
     }
 
-    function cleanOrder(){
-      setOrder(null)
-    }
+    const { cart, order} = deliverState
 
     return (
     <ProductsContext.Provider value={
       {
-        products, 
-        cartState, 
-        addProductToCart, 
-        isProductInCart, 
+        products,
+        cart,
+        order,
+        addProductToCart,
+        isProductInCart,
         updateCartProduct,
-        removeCartProduct
+        removeCartProduct,
+        createOrder 
       }}
       >{children}
     </ProductsContext.Provider>

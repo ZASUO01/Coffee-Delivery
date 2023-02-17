@@ -1,6 +1,9 @@
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm, FormProvider } from 'react-hook-form'
-import { ProductsContext } from '../../contexts/ProductsContext'
+import { Order, ProductsContext } from '../../contexts/ProductsContext'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 import {
   CurrencyDollar,
   MapPinLine,
@@ -15,20 +18,50 @@ import { Address } from './components/Address'
 import { PaymentOptions } from './components/PaymentOptions'
 import { CartResume } from './components/CartResume'
 
+const formValidationSchema = zod.object({
+  cep: zod.string().length(9).regex(/^[0-9]{5}-[0-9]{3}$/),
+  street: zod.string().min(1),
+  number: zod.string().min(1).regex(/^[0-9]*$/),
+  neighborhood: zod.string().min(1),
+  complement: zod.string().optional(),
+  city: zod.string().min(1),
+  uf: zod.string().length(2).regex(/^[A-Za-z]{2}$/)
+}) 
+
+type FormData = zod.infer<typeof formValidationSchema>
 
 export function Checkout() {
-  const { cartState } = useContext(ProductsContext)
-  const [paymentOption, setPaymentOption] = useState('')
+  const { cart, createOrder } = useContext(ProductsContext)
+  const [paymentOption, setPaymentOption] = useState('CC')
   
-  const buyerDetailsForm = useForm({
-
+  const buyerDetailsForm = useForm<FormData>({
+    resolver: zodResolver(formValidationSchema)
   })
 
-  const { handleSubmit, reset } = buyerDetailsForm
-  const isSubmitDisabled = cartState.length > 0 ? false : true
+  const navigate = useNavigate()
 
-  function handleBuyProducts(){
+  const { handleSubmit, reset } = buyerDetailsForm
+  const isSubmitDisabled = cart.length > 0 ? false : true
+
+
+  function handleBuyProducts(data: FormData){
+    const order: Order = {
+      address: {
+        cep: data.cep,
+        street: data.street,
+        number: data.number,
+        complement: data.complement,
+        neighborhood: data.neighborhood,
+        city: data.city,
+        uf: data.uf
+      },
+      paymentOption
+    }
+    
+    createOrder(order)
     reset()
+
+    navigate('/success')
   }
 
   return (
@@ -65,7 +98,7 @@ export function Checkout() {
         <FormBlock>
           <h1>Cafés Selecionados</h1>
           <FormCard>
-              <CartResume cartState={cartState}/>
+              <CartResume cart={cart}/>
               <button type='submit' disabled={isSubmitDisabled}>
                 CONFIRMAR PEDIDO
               </button>
