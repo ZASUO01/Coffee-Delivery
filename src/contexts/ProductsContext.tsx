@@ -69,6 +69,20 @@ export function ProductsContextProvider({
       {
         cart: [],
         order: null
+      },
+      () => {
+        const storedStateAsJSON = localStorage.getItem(
+          '@coffee-delivery:deliver-state-1.0.0'
+        )
+
+        if(storedStateAsJSON){
+          return JSON.parse(storedStateAsJSON)
+        }
+  
+        return {
+          cart: [],
+          order: null
+        }
       }
     )
   
@@ -88,6 +102,10 @@ export function ProductsContextProvider({
       )       
     }, [])
 
+    useEffect(() => {
+      const stateJSON = JSON.stringify(deliverState)
+      localStorage.setItem('@coffee-delivery:deliver-state-1.0.0', stateJSON)
+    }, [deliverState])
 
     function addProductToCart(data: CartProduct){
       dispatch(addProductToCartAction(data.product, data.quantity))
