@@ -3,13 +3,7 @@ import { addProductToCartAction, createOrderAction, removeCartProductAction, upd
 import { deliverReducer } from '../reducers/cart/reducer'
 import {v4 as uuidv4} from 'uuid'
 
-enum ProductTags {
-    'TRADICONAL',
-    'ESPECIAL',
-    'COM LEITE',
-    'ALCOÓLICO',
-    'GELADO'
-} 
+export type ProductTags = 'TRADICIONAL' | 'ESPECIAL' | 'COM LEITE' | 'ALCOÓLICO' | 'GELADO'
 
 export interface Product {
     id: string

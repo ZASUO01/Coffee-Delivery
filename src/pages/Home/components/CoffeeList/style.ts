@@ -26,31 +26,6 @@ export const ListHead = styled.div`
   }
 `
 
-export const Filter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  button {
-    padding: 0.375rem 0.75rem;
-    border-radius: 100px;
-    border: 1px solid ${(props) => props.theme.yellow};
-    background: transparent;
-    color: ${(props) => props.theme['yellow-dark']};
-    font-weight: 700;
-    line-height: 130%;
-    font-size: 0.625rem;
-    cursor: pointer;
-
-    transition: 0.2s linear;
-
-    &:hover {
-      background: ${(props) => props.theme['yellow-light']};
-    }
-  }
-`
-
 export const ListContent = styled.div`
   width: 100%;
   margin-top: 3.375rem;
