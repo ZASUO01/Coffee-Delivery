@@ -15,6 +15,10 @@ export const HeaderContainer = styled.header`
   img {
     height: 2.5rem;
   }
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `
 
 export const Actions = styled.div`
@@ -33,6 +37,10 @@ export const Actions = styled.div`
 
     svg {
       color: ${(props) => props.theme.purple};
+    }
+
+    @media (max-width: 768px) {
+      font-size: 0.75rem;
     }
   }
 `

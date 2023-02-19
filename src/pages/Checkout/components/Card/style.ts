@@ -11,6 +11,14 @@ export const CardComponent = styled.div`
         line-height: 130%;
         color: ${(props) => props.theme['base-text']};
         font-weight: 700;
+
+        @media (max-width: 768px) {
+            font-size: 0.75rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
     }
 `
 
@@ -22,6 +30,10 @@ export const Info = styled.div`
 
     img{
         height: 4rem;
+
+        @media (max-width: 768px) {
+            height: 3rem;
+        }
     }
 `
 
@@ -34,6 +46,10 @@ export const Details = styled.div`
         color: ${(props) => props.theme['base-subtitle']};
         line-height: 130%;
         margin-bottom: 0.5rem;
+
+        @media (max-width: 768px) {
+            font-size: 0.875rem;
+        }
     }
 `
 

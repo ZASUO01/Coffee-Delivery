@@ -21,6 +21,10 @@ export const CartResumeContainer = styled.div`
       background: ${(props) => props.theme['base-button']};
     }
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const CartDetails = styled.div`
@@ -29,6 +33,10 @@ export const CartDetails = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 1.25rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 

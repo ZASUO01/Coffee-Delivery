@@ -5,6 +5,11 @@ export const PaymentOptionsContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column ;
+    width: 100%;
+  }
 `
 interface PaymentButtonProps {
   active: boolean
@@ -24,6 +29,10 @@ export const PaymentButton = styled.button<PaymentButtonProps>`
   transition: 0.2s linear;
   background: ${(props) => props.theme['base-button'] };
   border: 0;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   svg {
     color: ${(props) => props.theme.purple};

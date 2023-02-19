@@ -13,6 +13,10 @@ export const AddressContainer = styled.div`
   .form-error-input{
     font-size: 0.75rem;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const InputContainer = styled.div`
@@ -24,6 +28,11 @@ export const InputContainer = styled.div`
 
   &:first-child {
     margin-top: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
   }
 
   input {
@@ -43,23 +52,49 @@ export const InputContainer = styled.div`
 
   & input[name='street'] {
     width: 35rem;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   & input[name='complement'] {
     width: 21.75rem;
+  
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   & input[name='city'] {
     width: 17.25rem;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   & input[name='uf'] {
     width: 3.75rem;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    input[name='cep'], input[name='number'], input[name='neighborhood'] {
+      width: 100%;
+    }   
   }
 `
 
 export const OptionalInput = styled.div`
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   p{
     position: absolute;

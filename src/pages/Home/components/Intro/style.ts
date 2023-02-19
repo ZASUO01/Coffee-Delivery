@@ -14,6 +14,15 @@ export const IntroContaner = styled.div`
 
   img {
     height: 22.5rem;
+
+    @media (max-width: 768px) {
+      height: 16rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 5.75rem 1rem;
   }
 `
 
@@ -30,6 +39,10 @@ export const Title = styled.div`
     font-size: 3rem;
     line-height: 130%;
     margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 2.25rem;
+    }
   }
 
   p {
@@ -37,6 +50,10 @@ export const Title = styled.div`
     color: ${(props) => props.theme['base-subtitle']};
     font-size: 1.25rem;
     line-height: 130%;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 `
 
@@ -45,6 +62,12 @@ export const Items = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 1.25rem;
+
+  @media screen {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
 `
 export const Item = styled.div`
   color: ${(props) => props.theme['base-text']};
@@ -52,6 +75,10 @@ export const Item = styled.div`
   font-size: 1rem;
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
 
   span {
     color: ${(props) => props.theme.background};

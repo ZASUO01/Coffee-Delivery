@@ -10,6 +10,10 @@ export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem 9.875rem 1rem;
+  }
 `
 export const ListHead = styled.div`
   width: 100%;
@@ -23,6 +27,14 @@ export const ListHead = styled.div`
     font-size: 2rem;
     font-weight: 800;
     line-height: 130%;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `
 
@@ -33,4 +45,10 @@ export const ListContent = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 2.5rem;
   column-gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `

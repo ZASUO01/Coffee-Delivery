@@ -15,6 +15,10 @@ export const SuccessContainer = styled.div`
             font-size: 1.5rem;
             color: ${(props) => props.theme['yellow-dark']};
         }
+
+        @media (max-width: 768px) {
+            padding: 11.5rem 1rem 4rem 1rem;
+        }
 `
 
 export const SuccessHead = styled.div`
@@ -29,10 +33,18 @@ export const SuccessHead = styled.div`
         font-weight: 800;
         font-size: 2rem;
         color: ${(props) => props.theme['yellow-dark']};
+
+        @media (max-width: 768px) {
+            font-size: 1.75rem;
+        }
     }
     p{
         font-size: 1.25rem;
         color: ${(props) => props.theme['base-subtitle']};
+
+        @media (max-width: 768px) {
+            font-size: 1rem;
+        }
     }
 `
 
@@ -42,8 +54,16 @@ export const SuccessContent = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+
     img{
         height: 18.875rem;
+
+        @media (max-width: 768px) {
+            height: 14rem;
+        }
     }
 
     ul{
@@ -56,11 +76,21 @@ export const SuccessContent = styled.div`
         align-items: flex-start;
         list-style-type: none;
 
+        @media (max-width: 768px) {
+            width: 100%;
+            margin-bottom: 2rem;
+            padding: 2rem 1.5rem;
+        }
+
         li{
             display: flex;
             align-items: flex-start;
             justify-content: center;
             margin-top: 2rem;
+
+            @media (max-width: 768px) {
+                font-size: 0.875rem;
+            }
 
             span{
                 border-radius: 100%;

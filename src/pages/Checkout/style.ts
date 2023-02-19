@@ -6,6 +6,10 @@ export const CheckoutContainer = styled.div`
   margin: 0 auto;
   padding: 9rem 0 15rem 0;
 
+  @media (max-width: 768px) {
+    padding: 9rem 1rem 15rem 1rem;
+  }
+
   form {
     display: flex;
     align-items: flex-start;
@@ -31,6 +35,16 @@ export const CheckoutContainer = styled.div`
       :hover{
         background: ${(props) => props.theme['yellow-dark']};
       }
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+  
+  
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
     }
   }
 `
@@ -39,6 +53,15 @@ export const FormBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media (max-width: 768px) {
+     width: 100%;
+
+     & + & {
+      margin-top: 2rem;
+     }
+  }
+
 
   h1 {
     font-family: 'Baloo 2';
@@ -58,6 +81,11 @@ export const FormCard = styled.div`
   background-color: ${(props) => props.theme['base-card']};
   border-radius: 6px;
   padding: 2.5rem;
+
+  @media (max-width: 768px) {
+      padding: 1.5rem;
+      width: 100%;
+  }
 
   & + & {
     margin-top: 0.75rem;
